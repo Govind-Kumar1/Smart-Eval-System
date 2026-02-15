@@ -4,7 +4,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const compileRoute = require('./routes/compileRoute');
-
+const authRoute = require('./routes/authRoute');
 
 
 const app = express();
@@ -17,10 +17,11 @@ app.use(express.json());
 
 // Routes  
 app.use('/api/compile', compileRoute);
+app.use('/api/auth', authRoute);
 
-// Database Connection
+//Database Connection
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB Connected"))
+  .then(() => console.log("✅ MongoDB Connected")) 
   .catch((err) => console.error("❌ DB Connection Error:", err));
 
 // Basic Route
