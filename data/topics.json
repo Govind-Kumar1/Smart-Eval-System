@@ -1,0 +1,18 @@
+[
+  {
+    "topic": "Data Types",
+    "description": "Understanding int, float, string and type casting"
+  },
+  {
+    "topic": "Array Indexing",
+    "description": "Handling index out of range and array traversal"
+  },
+  {
+    "topic": "Edge Case Handling",
+    "description": "Handling corner and boundary cases in problems"
+  },
+  {
+    "topic": "Loops and Conditions",
+    "description": "Control flow using loops and conditional statements"
+  }
+]

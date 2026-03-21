@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+langchain
+langchain-huggingface
+faiss-cpu
+redis
+pika
+python-dotenv
