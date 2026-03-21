@@ -1,18 +1,30 @@
 [
   {
     "topic": "Data Types",
-    "description": "Understanding int, float, string and type casting"
+    "description": "Understanding int, float, string, type casting, and type errors"
   },
   {
     "topic": "Array Indexing",
-    "description": "Handling index out of range and array traversal"
+    "description": "Handling index out of range and safe access in arrays"
   },
   {
     "topic": "Edge Case Handling",
-    "description": "Handling corner and boundary cases in problems"
+    "description": "Handling boundary cases like empty input, large values"
   },
   {
-    "topic": "Loops and Conditions",
-    "description": "Control flow using loops and conditional statements"
+    "topic": "Loops",
+    "description": "Using loops correctly for iteration and avoiding infinite loops"
+  },
+  {
+    "topic": "Conditional Statements",
+    "description": "Using if-else logic properly for decision making"
+  },
+  {
+    "topic": "Error Handling",
+    "description": "Understanding exceptions and debugging runtime errors"
+  },
+  {
+    "topic": "Functions",
+    "description": "Writing reusable functions and passing arguments correctly"
   }
 ]
