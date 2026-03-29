@@ -20,7 +20,7 @@ app.use(express.json());
 // Routes  
 app.use('/api/compile', compileRoute);
 app.use('/api/auth', authRoute);
-app.use('/api/problems', problemRoute);
+app.use('/api/problems', problemRoute); 
 
 app.use('/api/submissions', submissionRoute);
 

@@ -1,4 +1,4 @@
-const User = require('../models/Users'); // Jo User model humne pehle banaya tha
+const User = require('../models/Users'); 
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -7,20 +7,17 @@ const registerUser = async (req, res) => {
     try {
         const { username, email, password, role } = req.body;
 
-        // Check karo user pehle se hai kya?
         const existingUser = await User.findOne({ email });
         if (existingUser) return res.status(400).json({ message: "User already exists" });
 
-        // Password ko encrypt (hash) karo
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        // Naya user banao
         const newUser = new User({
             username,
             email,
             password: hashedPassword,
-            role: role || 'student' // Default student rahega
+            role: role || 'student'
         });
 
         await newUser.save();
@@ -36,18 +33,15 @@ const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        // User dhundo
         const user = await User.findOne({ email });
         if (!user) return res.status(404).json({ message: "User not found" });
 
-        // Password match karo
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({ message: "Invalid Credentials" });
 
-        // Token generate karo (Ye user ka ID card hai)
         const token = jwt.sign(
             { id: user._id, role: user.role }, 
-            process.env.JWT_SECRET || "supersecretkey", // .env me daal denge baad me
+            process.env.JWT_SECRET || "supersecretkey", 
             { expiresIn: "1d" }
         );
 
@@ -58,4 +52,15 @@ const loginUser = async (req, res) => {
     }
 };
 
-module.exports = { registerUser, loginUser };
+// 3. GET ALL STUDENTS (NEW - Teacher ke form ke liye)
+const getAllStudents = async (req, res) => {
+    try {
+        // Sirf un users ko lao jinka role 'student' hai (password hide kar do)
+        const students = await User.find({ role: 'student' }).select('-password');
+        res.json(students);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+module.exports = { registerUser, loginUser, getAllStudents };

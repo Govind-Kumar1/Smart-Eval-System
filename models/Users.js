@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     enum: ['student', 'teacher'], 
     default: 'student' 
   },
-  // Students ke liye weak areas track karne ke liye
+  // Students ke weak areas track karne ke liye (AI analysis ke kaam aayega)
   weakAreas: [{ type: String }], 
 }, { timestamps: true });
 

@@ -1,11 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const { submitCode, getUserSubmissions } = require('../controllers/submissionController');
+const { submitCode, getUserSubmissions, addFeedback } = require('../controllers/submissionController');
+const { protect } = require('../middleware/authMiddleware');
 
-// Code submit karna
-router.post('/', submitCode);
+// 1. Code Submit karna (Student ke liye - Final Evaluation)
+router.post('/', protect, submitCode);
 
-// Kisi student ki history dekhna
-router.get('/:userId', getUserSubmissions);
+// 2. History dekhna (Student/Teacher ke liye)
+router.get('/:userId', protect, getUserSubmissions);
+
+// 3. Teacher Feedback Add karna 
+router.post('/feedback', protect, addFeedback);
 
 module.exports = router;
