@@ -102,7 +102,8 @@ const submitCode = async (req, res) => {
         // AI Logic
         let aiHint = "";
         if (!allPassed) {
-            aiHint = generateSmartHint(log, language);
+            // NAYE PARAMETERS PASS KIYE AUR AWAIT LAGAYA
+            aiHint = await generateSmartHint(log, language, studentId, problemId, problem.title);
         } else {
             aiHint = "🌟 AI Feedback: Excellent work! Your solution is correct.";
         }
